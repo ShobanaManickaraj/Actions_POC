@@ -22,7 +22,7 @@ on:
   workflow_dispatch:
 env:
   WF_ENV: workflow-env available to All Jobs
-  WF_PASSCODE: ${{secret.EF_PASSCODE}}
+  WF_PASSCODE: ${{secrets.WF_PASSCODE}}
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
