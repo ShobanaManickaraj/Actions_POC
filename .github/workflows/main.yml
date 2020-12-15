@@ -42,7 +42,6 @@ jobs:
            echo "WF_ENV: ${WF_ENV}"
            echo "JOB_ENV: ${JOB_ENV}"
            echo "STEP_ENV: ${STEP_ENV}"
-           echo "PASSCODE : ${WF_PASSCODE}
       - name: Check ENV 2 Variable 
         run: |
            echo "WF_ENV: ${WF_ENV}"
