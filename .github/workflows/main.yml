@@ -20,18 +20,37 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-
+env:
+  WF_ENV: workflow-env available to All Jobs
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   build:
+    env:
+      JOB_ENV: Job-env Available to all Steps
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Runs a single command using the runners shell
+      - name: Check ENV Variable 
+        env:
+          STEP_ENV: Step-env Available to this Step
+        run: |
+           echo "WF_ENV: ${WF_ENV}"
+           echo "JOB_ENV: ${JOB_ENV}"
+           echo "STEP_ENV: ${STEP_ENV}"
+      - name: Check ENV 2 Variable 
+        env:
+          STEP_ENV: Step-env Available to this Step
+        run: |
+           echo "WF_ENV: ${WF_ENV}"
+           echo "JOB_ENV: ${JOB_ENV}"
+           echo "STEP_ENV: ${STEP_ENV}"      
       - name: Check Run folder 
+        env:
+          JOB_ENV: Step-env Available to this Step
         run: |
              pwd
              ls
