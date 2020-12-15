@@ -42,15 +42,11 @@ jobs:
            echo "JOB_ENV: ${JOB_ENV}"
            echo "STEP_ENV: ${STEP_ENV}"
       - name: Check ENV 2 Variable 
-        env:
-          STEP_ENV: Step-env Available to this Step
         run: |
            echo "WF_ENV: ${WF_ENV}"
            echo "JOB_ENV: ${JOB_ENV}"
            echo "STEP_ENV: ${STEP_ENV}"      
       - name: Check Run folder 
-        env:
-          JOB_ENV: Step-env Available to this Step
         run: |
              pwd
              ls
