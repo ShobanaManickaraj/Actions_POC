@@ -10,10 +10,22 @@ on:
     types: [build]
 
   # Cron Schedule
-  schedule:
-    - cron: "30 * * * *"
+  #schedule:
+  #  - cron: "30 * * * *"
 
+  #On Push
   #push:
+  #  branches:
+  #    - master
+  #    - "feature/*"
+  #    - "!feature/featC"
+  #  tags:
+  #    - v1.*
+  #  paths:
+  #    - "**.js"
+  #    - "!filename.js"
+    #paths-ignore:
+    #  - ""
   #  branches: [ master ]
   pull_request:
     branches: [ master ]
