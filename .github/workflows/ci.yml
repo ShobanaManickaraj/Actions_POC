@@ -21,7 +21,7 @@ jobs:
       - run: npm run build
       - name: Upload Build Artifact
         if: ${{ success() }}
-        uses: actions/upload-artifacts@v2
+        uses: actions/upload-artifact@v2
         with:
           name: build
           path: build
@@ -30,7 +30,7 @@ jobs:
           CI: true
       - name: Upload Test Coverage
         if: ${{ success() }}
-        uses: actions/upload-artifacts@v1
+        uses: actions/upload-artifact@v2
         with:
           name: code-coverage
           path: coverage
