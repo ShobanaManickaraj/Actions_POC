@@ -95,5 +95,10 @@ jobs:
         uses: actions/hello-world-javascript-action@v1
         with:
           who-to-greet: Shobana
-      - name: Log Greeting Time
-        run: echo "${{ steps.greet.outputs.time}}" 
+      - name: Send Slack Message
+        if: ${{ always() }}
+        uses: docker://technosophos/slack-notify
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_MESSAGE: "GitHub Action - ${GITHUB_REPOSITORY}  Commit - ${GITHUB_SHA}"
+      
