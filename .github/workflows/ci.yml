@@ -18,8 +18,6 @@ jobs:
         with:
           node-version: "12.x"
       - run: echo WF_ENV:${GITHUB_REPOSITORY} 
-      - run: echo WF_ENV:${steps.checkout} 
-      - run: echo WF_ENV:${steps.checkout.status} 
       - run: npm ci 
       - run: npm run checkstyle
       - run: npm run build
@@ -51,6 +49,6 @@ jobs:
           SLACK_TITLE: Deployment Failed
           SLACK_USERNAME: rtCamp
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-      - name: Echo Step status
-        if: always() && github.event_name == 'push'
-        run: echo WF_ENV:${steps.pushstep.outcome}
+#      - name: Echo Step status
+#        if: always() && github.event_name == 'push'
+#        run: echo WF_ENV:${steps.pushstep.outcome}
