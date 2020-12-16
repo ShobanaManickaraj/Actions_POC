@@ -1,3 +1,8 @@
+![Development](https://gitlab.com/https://github.com/ShobanaManickaraj/Actions_POC/workflows/ci/badge.svg?branch=develop-B&event=push)
+# ![Build](https://github.com/AAInternal/InnerSource-Marketplace/workflows/Build/badge.svg?branch=main)
+# ![Test](https://github.com/AAInternal/InnerSource-Marketplace/workflows/Test/badge.svg?branch=main)
+# ![Linting](https://github.com/AAInternal/InnerSource-Marketplace/workflows/Linting/badge.svg?branch=main)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
