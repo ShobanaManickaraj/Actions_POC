@@ -1,4 +1,6 @@
 ![Development](https://github.com/ShobanaManickaraj/Actions_POC/workflows/CI/badge.svg?branch=develop-B&event=push)
+![Status](https://github.com/ShobanaManickaraj/Actions_POC/workflows/CI/badge.svg?branch=develop-B)
+
 
 # Getting Started with Create React App
 
