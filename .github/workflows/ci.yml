@@ -35,7 +35,18 @@ jobs:
           name: code-coverage
           path: coverage
       - name: Deploy the App
+        id: pushstep
         if: github.event_name == 'push'
-        run: echo 'deploying to Azure'
-         
-        
+        run: echoo 'deploying to Azure'
+      - name: Slack Notification
+        if: failure() && github.event_name == 'push'
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_COLOR: '#3278BD'
+          SLACK_MESSAGE: 'Deployment Failed ${steps.pushstep.outputs}'
+          SLACK_TITLE: Deployment Failed
+          SLACK_USERNAME: rtCamp
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+      - name: Echo Step status
+        if: always() && github.event_name == 'push'
+        run: echo "WF_ENV:${steps.pushstep.outputs}" 
