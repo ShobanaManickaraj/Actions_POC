@@ -1,4 +1,4 @@
-![Development](https://github.com/AAInternal/ShobanaManickaraj/Actions_POC/workflows/ci/badge.svg?branch=develop-B)
+![Development](https://github.com/ShobanaManickaraj/Actions_POC/workflows/CI/badge.svg?branch=develop-B&event=push)
 
 # Getting Started with Create React App
 
