@@ -17,6 +17,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "12.x"
+      - run: echo WF_ENV:${GITHUB_REPOSITORY} 
+      - run: echo WF_ENV:${steps.checkout} 
       - run: echo WF_ENV:${steps.checkout.status} 
       - run: npm ci 
       - run: npm run checkstyle
