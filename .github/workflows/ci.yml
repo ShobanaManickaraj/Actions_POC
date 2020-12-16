@@ -51,7 +51,7 @@ jobs:
           --header 'content-type: application/json' \
           --data '{
             "title": "Automated issue for commit :${{ github.sha }}",
-            "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**.\n\n The comiit hash was: _${{ github.sha}}_.",
+            "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. The comiit hash was: _${{ github.sha}}_.",
             "assignees": ["${{
               github.event.pull_request.use.login }}"]
             }'
