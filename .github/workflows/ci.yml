@@ -11,11 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the Branch
+        id: checkout
         uses: actions/checkout@v2
       - name: Use NodeJS
         uses: actions/setup-node@v1
         with:
           node-version: "12.x"
+      - run: echo WF_ENV:${steps.pushstep.outputs} 
       - run: npm ci 
       - run: npm run checkstyle
       - run: npm run build
@@ -49,5 +51,4 @@ jobs:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
       - name: Echo Step status
         if: always() && github.event_name == 'push'
-        run: |
-            echo "WF_ENV: ${steps.pushstep.outputs}" 
+        run: echo WF_ENV:${steps.pushstep.outputs}
