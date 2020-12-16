@@ -17,7 +17,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "12.x"
-      - run: echo WF_ENV:${steps.pushstep.outputs} 
+      - run: echo WF_ENV:${steps.checkout.outcome} 
       - run: npm ci 
       - run: npm run checkstyle
       - run: npm run build
@@ -45,10 +45,10 @@ jobs:
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_COLOR: '#3278BD'
-          SLACK_MESSAGE: 'Deployment Failed ${steps.pushstep.outputs}'
+          SLACK_MESSAGE: 'Deployment Failed ${steps.pushstep.outcome}'
           SLACK_TITLE: Deployment Failed
           SLACK_USERNAME: rtCamp
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
       - name: Echo Step status
         if: always() && github.event_name == 'push'
-        run: echo WF_ENV:${steps.pushstep.outputs}
+        run: echo WF_ENV:${steps.pushstep.outcome}
