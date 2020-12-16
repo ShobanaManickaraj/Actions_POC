@@ -1,4 +1,5 @@
-![Development](https://github.com/ShobanaManickaraj/Actions_POC/workflows/ci/badge.svg?branch=develop-B&event=push)
+![Development](https://github.com/ShobanaManickaraj/Actions_POC/workflows/ci/badge.svg?branch=develop-B)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
