@@ -49,4 +49,5 @@ jobs:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
       - name: Echo Step status
         if: always() && github.event_name == 'push'
-        run: echo "WF_ENV:${steps.pushstep.outputs}" 
+        run: |
+            echo "WF_ENV: ${steps.pushstep.outputs}" 
