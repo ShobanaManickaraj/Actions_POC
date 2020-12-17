@@ -40,13 +40,23 @@ jobs:
         id: pushstep
         if: github.event_name == 'push'
         run: |
-          echo 'deploying to Azure'
+          eccho 'deploying to Azure'
           echo '::set-output status=success'
       - name: Open Issue 
         if: failure() && github.event_name == 'push'
-        uses: wei/curl@master
-        with:
-          args: "-X POST --url https://api.github.com/repos/${{github.repository}}/issues -H 'Authorization: Bearer ${{secrets.CUSTOM_TOKEN}}' -H 'content-type: application/json' -H 'Accept: application/vnd.github.v3+json'  -d '{\"title\": \"Automated issue for commit :${{ github.sha }}\",\"body\": \"This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. The commit hash was: _${{ github.sha}}_.\"}'"
+        run: |
+          curl --request POST \
+          --url https://api.github.com/repos/${{ github.repository }}/issues \
+          --header 'authorization: Bearer ${{ secrets.CUSTOM_TOKEN }}' \
+          --header 'content-type: application/json' \
+          --data '{
+            "title": "Automated issue for commit: ${{ github.sha }}",
+            "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. \n\n The commit hash was: _${{ github.sha }}_.",
+            "assignees": ["${{ github.event.pull_request.user.login }}"]
+            }'
+     #   uses: wei/curl@master
+     #   with:
+     #     args: "-X POST --url https://api.github.com/repos/${{github.repository}}/issues -H 'Authorization: Bearer ${{secrets.CUSTOM_TOKEN}}' -H 'content-type: application/json' -H 'Accept: application/vnd.github.v3+json'  -d '{\"title\": \"Automated issue for commit :${{ github.sha }}\",\"body\": \"This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. The commit hash was: _${{ github.sha}}_.\"}'"
        # run: |
        #   curl --request POST --url https://api.github.com/repos/${{github.repository}}/issues --header 'Authorization: Bearer ${{secrets.CUSTOM_TOKEN}}' --header 'content-type: application/json' --header 'Accept: application/vnd.github.v3+json'  --data '{"title": "Automated issue for commit :${{ github.sha }}","body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. The commit hash was: _${{ github.sha}}_."}'
       - name: Slack Notification
@@ -58,6 +68,6 @@ jobs:
           SLACK_TITLE: WORKFLOW COMPLETE
           SLACK_USERNAME: rtCamp
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-      - name: Echo Step status
-        if: always() && github.event_name == 'push'
-        run: echo WF_ENV:${steps.pushstep.outputs.status}
+#      - name: Echo Step status
+#        if: always() && github.event_name == 'push'
+#        run: echo WF_ENV:${steps.pushstep.outputs.status}
