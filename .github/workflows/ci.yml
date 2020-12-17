@@ -39,7 +39,9 @@ jobs:
       - name: Deploy the App
         id: pushstep
         if: github.event_name == 'push'
-        run: echoo 'deploying to Azure'
+        run: |
+          echo 'deploying to Azure'
+          echo '::set-output status=success'
       - name: Open Issue 
         if: failure() && github.event_name == 'push'
         uses: wei/curl@master
@@ -56,6 +58,6 @@ jobs:
           SLACK_TITLE: WORKFLOW COMPLETE
           SLACK_USERNAME: rtCamp
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-#      - name: Echo Step status
-#        if: always() && github.event_name == 'push'
-#        run: echo WF_ENV:${steps.pushstep.outcome}
+      - name: Echo Step status
+        if: always() && github.event_name == 'push'
+        run: echo WF_ENV:${steps.pushstep.outputs.status}
