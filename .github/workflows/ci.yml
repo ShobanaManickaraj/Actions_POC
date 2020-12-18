@@ -13,6 +13,19 @@ jobs:
       - name: Checkout the Branch
         id: checkout
         uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          repository: AAInternal/sonarscan
+          ref: v1.1.0
+          token: "${{ secrets.AAINTERNAL_READ_TOKEN }}"
+          path: ./.github/actions/sonarscan
+      - name: sonarscan
+        id: sonarscan
+        env:
+          DEPLOYMENT_ID: "deployment_sonarscan_node_test"
+        uses: ./.github/actions/sonarscan
+        with:
+          token: "${{ secrets.CUSTOM_TOKEN }}" 
       - name: Use NodeJS
         uses: actions/setup-node@v1
         with:
