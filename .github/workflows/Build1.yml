@@ -21,8 +21,6 @@ jobs:
            echo "GITHUB_SHA: ${GITHUB_SHA}"
            echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}"
       - name: Check Envrironment Variable 
-        env:
-          STEP_ENV: Step-env Available to this Step 2
         run: |
            echo "WF_ENV: ${WF_ENV}"
            echo "JOB_ENV: ${JOB_ENV}"
