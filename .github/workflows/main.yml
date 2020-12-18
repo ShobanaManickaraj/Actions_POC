@@ -16,7 +16,7 @@ on:
   #On Push
   push:
     branches:
-      - master
+      - master1
   #    - "feature/*"
   #    - "!feature/featC"
   #  tags:

@@ -1,0 +1,44 @@
+name: Build
+on:
+  push:
+    branches: [master]
+env:
+  WF_ENV: workflow-env_Variable Available to this Workflow
+jobs:
+  BuildJob:
+    runs-on: ubuntu-latest
+    env:
+        JOB_ENV: Job-env_Variable Available to this Job
+    steps:
+      - name: Check Envrironment Variable Step 1 
+        env:
+          STEP_ENV: Step-env Available to this Step
+        run: |
+           echo "WF_ENV: ${WF_ENV}"
+           echo "JOB_ENV: ${JOB_ENV}"
+           echo "STEP_ENV: ${STEP_ENV}"
+           echo "PASSCODE : ${WF_PASSCODE}"
+           echo "GITHUB_SHA: ${GITHUB_SHA}"
+           echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}"
+      - name: Check Envrironment Variable 
+        env:
+          STEP_ENV: Step-env Available to this Step 2
+        run: |
+           echo "WF_ENV: ${WF_ENV}"
+           echo "JOB_ENV: ${JOB_ENV}"
+           echo "STEP_ENV: ${STEP_ENV}"
+           echo "PASSCODE : ${WF_PASSCODE}"
+           echo "GITHUB_SHA: ${GITHUB_SHA}"
+           echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}"
+      - name: Check Run folder 
+        run: |
+             pwd
+             ls
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Check out the Branch
+        uses: actions/checkout@v2
+      # Runs a single command using the runners shell
+      - name: Check Run folder after Checkout 
+        run: |
+             pwd
+             ls
