@@ -17,7 +17,7 @@ jobs:
         with:
           repository: AAInternal/sonarscan
           ref: v1.1.0
-          token: "${{ secrets.CUSTOM_TOKEN }}"
+          token: "${{ secrets.AAINTERNAL_READONLY_PAT }}"
           path: ./.github/actions/sonarscan
       - name: sonarscan
         id: sonarscan
