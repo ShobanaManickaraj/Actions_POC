@@ -8,6 +8,7 @@ on:
 env:
   AZURE_WEBAPP_NAME: simpleappsm    # set this to your application's name
   AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
+  NODE_VERSION: '10.x'                # set this to the node version to use
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,7 +19,7 @@ jobs:
       - name: Use NodeJS
         uses: actions/setup-node@v1
         with:
-          node-version: "12.x"
+          node-version: ${{ env.NODE_VERSION }}
       - run: npm ci 
       - run: npm run checkstyle
       - run: npm run build
