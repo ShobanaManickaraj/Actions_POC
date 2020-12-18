@@ -34,11 +34,14 @@ jobs:
         with:
           name: code-coverage
           path: coverage
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy the App
         id: pushstep
         if: github.event_name == 'push'
         run: |
-          eccho 'deploying to Azure'
+          echo 'deploying to Azure'
           echo '::set-output status=success'
       - name: Open Issue 
         if: failure() && github.event_name == 'push'

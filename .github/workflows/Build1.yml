@@ -1,7 +1,7 @@
 name: CI
 on:
   push:
-    branches: [master]
+    branches: [master1]
   # Repository Dispatch
   repository_dispatch:
     types: [build]
