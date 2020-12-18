@@ -1,10 +1,13 @@
-name: CICD
+name: Deployment
 on:
   pull_request:
-    branches: [master1]
+    branches: [master]
   push:
     branches:
-      - master1
+      - master
+env:
+  AZURE_WEBAPP_NAME: sample-node-app    # set this to your application's name
+  AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -39,11 +42,12 @@ jobs:
     needs: build
     if: github.event_name == 'push'
     steps:
-      - name: Deploy the App
-        id: pushstep
-        run: |
-          echo 'deploying to Azure'
-          echo '::set-output status=success'
+      - name: 'Deploy to Azure WebApp'
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
       - name: Open Issue 
         if: failure()
         run: |
@@ -65,4 +69,3 @@ jobs:
           SLACK_TITLE: WORKFLOW COMPLETE
           SLACK_USERNAME: rtCamp
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-
