@@ -41,7 +41,7 @@ jobs:
              pwd
              ls
   Deploy:
-    needs: build
+    needs: BuildJob
     runs-on: ubuntu-latest
     steps:
       - name: Check Envrironment Variable in Job 2 
