@@ -38,7 +38,7 @@ jobs:
         id: pushstep
         if: github.event_name == 'push'
         run: |
-          echo 'deploying to Azure'
+          eccho 'deploying to Azure'
           echo '::set-output status=success'
       - name: Open Issue 
         if: failure() && github.event_name == 'push'
@@ -53,7 +53,7 @@ jobs:
             "assignees": ["${{ github.event.pull_request.user.login }}"]
             }'
       - name: Slack Notification
-        if: always()
+        if: always() && github.event_name == 'push'
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_COLOR: '#3278BD'
