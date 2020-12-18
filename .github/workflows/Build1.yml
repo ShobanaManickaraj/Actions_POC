@@ -1,7 +1,10 @@
-name: Build
+name: CI
 on:
   push:
     branches: [master]
+  # Repository Dispatch
+  repository_dispatch:
+    types: [build]
 env:
   WF_ENV: workflow-env_Variable Available to this Workflow
 jobs:
@@ -52,4 +55,14 @@ jobs:
            echo "PASSCODE : ${WF_PASSCODE}"
            echo "GITHUB_SHA: ${GITHUB_SHA}"
            echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}"
+      - name: Simple JS Actions
+        id: greet
+        uses: actions/hello-world-javascript-action@v1
+        with:
+          who-to-greet: Shobana
+      - name: Send Slack Message
+        uses: docker://technosophos/slack-notify
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_MESSAGE: "GitHub Action - ${GITHUB_REPOSITORY}  Commit - ${GITHUB_SHA}"
 
