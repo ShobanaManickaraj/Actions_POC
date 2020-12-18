@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Check Envrironment Variable Step 1 
         env:
-          STEP_ENV: Step-env Available to this Step
+          STEP_ENV: Step-env Available to this Step1
         run: |
            echo "WF_ENV: ${WF_ENV}"
            echo "JOB_ENV: ${JOB_ENV}"
@@ -20,7 +20,7 @@ jobs:
            echo "PASSCODE : ${WF_PASSCODE}"
            echo "GITHUB_SHA: ${GITHUB_SHA}"
            echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}"
-      - name: Check Envrironment Variable 
+      - name: Check Envrironment Variable Step 2
         run: |
            echo "WF_ENV: ${WF_ENV}"
            echo "JOB_ENV: ${JOB_ENV}"
@@ -40,3 +40,15 @@ jobs:
         run: |
              pwd
              ls
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Envrironment Variable in Job 2 
+        run: |
+           echo "WF_ENV: ${WF_ENV}"
+           echo "JOB_ENV: ${JOB_ENV}"
+           echo "STEP_ENV: ${STEP_ENV}"
+           echo "PASSCODE : ${WF_PASSCODE}"
+           echo "GITHUB_SHA: ${GITHUB_SHA}"
+           echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}"
+
