@@ -17,7 +17,7 @@ jobs:
         with:
           repository: AAInternal/sonarscan
           ref: v1.1.0
-          token: "${{ secrets.AAINTERNAL_READ_TOKEN }}"
+          token: "${{ secrets.CUSTOM_TOKEN }}"
           path: ./.github/actions/sonarscan
       - name: sonarscan
         id: sonarscan
@@ -25,7 +25,7 @@ jobs:
           DEPLOYMENT_ID: "deployment_sonarscan_node_test"
         uses: ./.github/actions/sonarscan
         with:
-          token: "${{ secrets.SONARQUBE_TOKEN }}"
+          token: "${{ secrets.CUSTOM_TOKEN }}"
       - name: Use NodeJS
         uses: actions/setup-node@v1
         with:
