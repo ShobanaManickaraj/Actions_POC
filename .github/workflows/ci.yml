@@ -13,7 +13,7 @@ jobs:
       - name: Checkout the Branch
         id: checkout
         uses: actions/checkout@v2
-      - uses: AAInternal/sonarscan@v1.1.0
+      - uses: AAInternal/sonarscan
         with:
           token: "${{ secrets.AAINTERNAL_READ_TOKEN }}"
       - name: Use NodeJS
